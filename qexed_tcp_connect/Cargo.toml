@@ -4,6 +4,12 @@ version = "0.1.0"
 edition = "2024"
 description = "一个数据包连接工具"
 license = "MIT"
+exclude = [
+    "target/",           # 排除整个编译目录
+    "Cargo.lock",        # 对于库项目，通常排除锁文件
+    "*.log",             # 排除日志文件
+    "**/*.bk",           # 排除备份文件
+]
 # serde = { workspace = true, features = ["derive"] }
 [dependencies]
 anyhow = "1.0.100"

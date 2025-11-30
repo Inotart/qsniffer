@@ -4,7 +4,12 @@ version = "0.1.0"
 edition = "2024"
 license = "MIT"
 homepage = "https://github.com/Inotart/qsniffer"
-
+exclude = [
+    "target/",           # 排除整个编译目录
+    "Cargo.lock",        # 对于库项目，通常排除锁文件
+    "*.log",             # 排除日志文件
+    "**/*.bk",           # 排除备份文件
+]
 [dependencies]
 # qexed 的库(我tm都是qexed的子项目了)
 qexed_packet_macros = { version = "0.1.0", workspace = true}
