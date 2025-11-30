@@ -2,7 +2,7 @@
 name = "qexed_tcp_connect"
 version = "0.1.0"
 edition = "2024"
-description = "test"
+description = "一个数据包连接工具"
 license = "MIT"
 # serde = { workspace = true, features = ["derive"] }
 [dependencies]

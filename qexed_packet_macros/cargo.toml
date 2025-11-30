@@ -3,6 +3,7 @@ name = "qexed_packet_macros"
 version = "0.1.0"
 edition = "2024"
 license = "MIT"
+description = "一个数据包定义工具" # 补充元数据消除警告
 [lib]
 proc-macro = true
 
