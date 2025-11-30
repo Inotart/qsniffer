@@ -2,7 +2,7 @@
 name = "qsniffer"
 version = "0.1.0"
 edition = "2024"
-
+license = "MIT"
 [dependencies]
 # qexed 的库(我tm都是qexed的子项目了)
 qexed_packet_macros = { path = "./qexed_packet_macros" }
