@@ -1,6 +1,6 @@
 use bytes::{BufMut, BytesMut};
 
-use crate::net_types::{subdata::Subdata, var_int::VarInt, var_long::{zigzag_encode, VarLong}};
+use crate::net_types::{subdata::Subdata, var_int::VarInt};
 
 pub struct PacketWriter<'a> {
     buf: &'a mut BytesMut,
@@ -86,22 +86,6 @@ impl<'a> PacketWriter<'a> {
             }
         }
     }
-    pub fn varlong(&mut self, value: &VarLong) {
-    // 使用 ZigZag 编码处理负数
-    let mut val = zigzag_encode(value.0);
-    
-    loop {
-        let mut temp = (val & 0x7F) as u8;
-        val >>= 7;
-        if val != 0 {
-            temp |= 0x80;  // 设置续位标志
-        }
-        self.buf.put_u8(temp);
-        if val == 0 {
-            break;
-        }
-    }
-}
     /// 读取固定长度的字节数组
     pub fn fixed_bytes<const N: usize>(&mut self,value:&[u8; N]) {
         // 检查是否有足够的数据

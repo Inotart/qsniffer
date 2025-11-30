@@ -1,6 +1,6 @@
 use bytes::Buf;
 
-use crate::net_types::{subdata::Subdata, var_int::VarInt, var_long::VarLong};
+use crate::net_types::{subdata::Subdata, var_int::VarInt};
 
 pub struct PacketReader<'a> {
     pub buf: Box<&'a mut dyn Buf>,
@@ -87,26 +87,6 @@ impl<'a> PacketReader<'a> {
         }
 
         panic!("Invalid VarInt");
-    }
-    pub fn varlong(&mut self) -> VarLong {
-        let mut value: u64 = 0;
-        let mut position = 0;
-
-        for _ in 0..10 {
-            // varlong 最多 10 个字节
-            let byte = self.buf.get_u8();
-            value |= ((byte as u64) & 0x7F) << (7 * position);
-
-            if (byte & 0x80) == 0 {
-                // ZigZag 解码
-                let decoded_value = ((value >> 1) as i64) ^ (-((value & 1) as i64));
-                return VarLong(decoded_value);
-            }
-
-            position += 1;
-        }
-
-        panic!("Invalid VarLong - too many bytes");
     }
     /// 读取固定长度的字节数组
     pub fn fixed_bytes<const N: usize>(&mut self) -> [u8; N] {

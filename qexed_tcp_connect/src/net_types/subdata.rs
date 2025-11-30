@@ -2,7 +2,7 @@
 use crab_nbt::Nbt;
 
 use crate::{
-    net_types::{self, rest_buffer::RestBuffer, var_int::VarInt, var_long::VarLong},
+    net_types::{self, rest_buffer::RestBuffer, var_int::VarInt},
     packet::{decode::PacketReader, encode::PacketWriter},
 };
 
@@ -272,16 +272,5 @@ impl<const N: usize> Subdata for [u8; N] {
         *self = r.fixed_bytes();
     }
 }
-impl Subdata for VarLong {
-    fn new() -> Self {
-        net_types::var_long::VarLong(0)
-    }
-    fn serialize(&self, w: &mut PacketWriter) {
-        w.varlong(&self);
-    }
 
-    fn deserialize(&mut self, r: &mut PacketReader) {
-        *self = r.varlong();
-    }
-}
 // fixed_bytes(&mut self,value:&[u8; N])
