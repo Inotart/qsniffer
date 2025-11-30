@@ -320,8 +320,35 @@ dependencies = [
 ]
 
 [[package]]
+name = "qexed_packet_macros"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "66554378768310c147d9e3a1794d905cc4bbb0358c46515f4875042534add2d2"
+dependencies = [
+ "proc-macro2",
+ "quote",
+ "syn",
+]
+
+[[package]]
 name = "qexed_tcp_connect"
 version = "0.1.0"
+dependencies = [
+ "anyhow",
+ "bytes",
+ "crab_nbt",
+ "flate2",
+ "serde",
+ "serde_json",
+ "tokio",
+ "uuid",
+]
+
+[[package]]
+name = "qexed_tcp_connect"
+version = "0.1.0"
+source = "registry+https://github.com/rust-lang/crates.io-index"
+checksum = "3c8cd63dc726b327fbd466f61d3a4cd9efc3dfc50cae4df2dd12923eeed47f81"
 dependencies = [
  "anyhow",
  "bytes",
@@ -340,8 +367,8 @@ dependencies = [
  "anyhow",
  "bytes",
  "log",
- "qexed_packet_macros",
- "qexed_tcp_connect",
+ "qexed_packet_macros 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
+ "qexed_tcp_connect 0.1.0 (registry+https://github.com/rust-lang/crates.io-index)",
  "serde_json",
  "tklog",
  "tokio",

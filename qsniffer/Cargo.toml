@@ -4,6 +4,7 @@ version = "0.1.0"
 edition = "2024"
 license = "MIT"
 homepage = "https://github.com/Inotart/qsniffer"
+description="Qsniffer is an infrastructure component of the Qexed project, primarily used to validate and test the correctness of packet parsing functions. It's a development assistance tool that helps developers inspect network packet parsing logic."
 exclude = [
     "target/",           # 排除整个编译目录
     "Cargo.lock",        # 对于库项目，通常排除锁文件
