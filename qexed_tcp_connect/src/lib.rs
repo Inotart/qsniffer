@@ -23,7 +23,6 @@ pub async fn new_tcp_server(ip:&str,port:u16)->Result<TcpListener>{
     let addr = format!("{}:{}", ip, port);
     let conn = TcpListener::bind(addr).await?;
     // Server listening on 0.0.0.0:25565
-    log::info!("服务器监听在 {}:{}", ip, port);
     Ok(conn)
 }
 // 压缩阈值：当数据包长度超过此值时启用压缩
