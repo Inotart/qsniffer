@@ -1,6 +1,3 @@
-
-use crab_nbt::Nbt;
-
 use crate::{
     net_types::{self, rest_buffer::RestBuffer, var_int::VarInt},
     packet::{decode::PacketReader, encode::PacketWriter},
@@ -189,23 +186,6 @@ impl Subdata for VarInt {
 
     fn deserialize(&mut self, r: &mut PacketReader) {
         *self = r.varint();
-    }
-}
-impl Subdata for crab_nbt::Nbt {
-    fn new() -> Self {
-        crab_nbt::nbt!("root", {})
-    }
-    fn serialize(&self, w: &mut PacketWriter) {
-        let bytes = self.write_unnamed();
-        w.byte_all(bytes.to_vec());
-    }
-
-    fn deserialize(&mut self, r: &mut PacketReader) {
-        let rs: Result<Nbt, crab_nbt::error::Error> = Nbt::read(&mut *r.buf);
-        if rs.is_err() {
-            return;
-        }
-        *self = rs.unwrap();
     }
 }
 
